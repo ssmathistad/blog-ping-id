@@ -25,7 +25,7 @@ PING_IDENTITY_DEVOPS_KEY=<user key>
 and then run the command, `docker-compose --env-file .env.local up -d`
 
 After the containers are started you can use the following credentials to login to the admin console. For pingaccess,
-use `https://localhost:9000`. For pingfederate, use `https://localhost:9031`. The user credentials
+use `https://localhost:9000`. For pingfederate, use `https://localhost:9999/pingfederate/app`. The user credentials
 are: `administrator/2FederateM0re`.
 
 ### Setup
@@ -39,34 +39,38 @@ that and also add some of our own.
 
 1. Go to Security > Signing & Decryption Keys & Certificates
 2. Create New
-3. Name: *Todo Cert*
-4. Subject Alternate Names: *DNS Name -- host.docker.internal*
-5. Organization: any name
-6. Country: *US*
-7. Save
-8. Create New
-9. Name: *Tweet Cert*
-10. Subject Alternate Names: *DNS Name -- host.docker.internal*
-11. Organization: any name
-12. Country: *US*
-13. Save
+    - Name: `Todo Cert`
+    - Subject Alternate Names: `DNS Name -- host.docker.internal`
+    - Organization: `any name`
+    - Country: `US`
+3. Create New
+    - Name: `Tweet Cert`
+    - Subject Alternate Names: `DNS Name -- host.docker.internal`
+    - Organization: `any name`
+    - Country: `US`
 
 *Access Token Manager* -- In order to generate token, you will need to define a access token manager.
 
 1. Go to Applications > Oauth > Access Token Management
 2. Create New Instance
-3. Instance Name: *Todo Token Management*
-4. Instance Id: *todotokenmgmt*
-5. Next
-6. Under Instance Configuration
-7. Under Certificates, add a Key Id: todokey and Certificate as Todo Cert. Update.
-8. JWS Algorithm: *RSA Using SHA-256*
-9. Active Signing Certificate Key Id: *todokey*
-10. Show Advanced Fields
-11. Issuer Claim Value: *https://pingfederate:9031*
-12. Audience Claim Value: *<todo-service-host>:8082*
-13. JWKS Endpoint Path: /todoauthtoken/jwks -- This needs to be unique for each token manager.
-14. Under Access Token Attribute Contract, add a new attribute to extend the USER_KEY subject.
+    > Enter an Access Token Management Instance Name and ID, select the plugin Access Token Management Type, and a parent if applicable. The types available are limited to the plugins currently installed on your server.
+    - a. Type
+        - Instance Name: `Todo Token Management`
+        - Instance Id: `todotokenmgmt`
+        - Type: `JSON Web Tokens`
+    - b. Instance Configuration
+        - Certificates > Add a new row to 'Certificates'
+            - Key ID: `todokey`
+            - Certificate: `Todo Cert`
+            - Click "Update"
+        - JWS Algorithm: `RSA Using SHA-256`
+        - Active Signing Certificate Key Id: `todokey`
+        - Show Advanced Fields
+            - Issuer Claim Value: `https://pingfederate:9031`
+            - Audience Claim Value: `<todo-service-host>:8082`
+            - JWKS Endpoint Path: `/todoauthtoken/jwks` -- This needs to be unique for each token manager.
+    - c. Access Token Attribute Contract
+        - Add a new attribute to extend the USER_KEY subject.
 15. Under Resource URIs, add a base resource uri, *https://<virtual-host-on-ping-access>:3000*
 16. Save
 17. Repeat steps 2-15 for Tweet Service.
