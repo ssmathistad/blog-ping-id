@@ -271,12 +271,27 @@ brew install mkcert
 ```
 
 ### Creating certificate using `mkcert`
+- `mkcert -install`
+  ```
+  Created a new local CA 💥
+  Sudo password:
+  The local CA is now installed in the system trust store! ⚡️
+  The local CA is now installed in Java's trust store! ☕️
+  ```
+- `mkcert -pkcs12 localhost 127.0.0.1 ::1 host.docker.internal`
+  ```
+  Created a new certificate valid for the following names 📜
+  - "localhost"
+  - "127.0.0.1"
+  - "::1"
+  - "host.docker.internal"
 
-```
-mkcert -install
+  The PKCS#12 bundle is at "./localhost+3.p12" ✅
 
-mkcert -pkcs12 localhost 127.0.0.1 ::1 host.docker.internal
-```
+  The legacy PKCS#12 encryption password is the often hardcoded default "changeit" ℹ️
+
+  It will expire on DAY MONTH YEAR 🗓
+  ```
 
 This will create and install the certificate in the trusted keystore.
 
@@ -284,6 +299,7 @@ This will create and install the certificate in the trusted keystore.
 
 Now create a directory in the root folder, `certs` and copy the generated certificate file to this location. Now when
 you start any of the services in this project they will be able to run on `https`.
+- `mdkir /Users/USER_NAME/certs && cp ./localhost+3.p12 /Users/USER_NAME/certs`
 
 ## Project Setup
 
