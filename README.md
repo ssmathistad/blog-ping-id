@@ -196,15 +196,13 @@ that and also add some of our own.
 1. Go to Applications > Sites
 2. Add Site
     - Name: `Todo API`
-    >Enter one or more hostname:port pairs for the site.
     - Targets: `host.docker.internal:8082`
-    >Select if the site is expecting HTTPS connections.
+      - Enter one or more hostname:port pairs for the site.
     - Secure: `Yes`
+      - Select if the site is expecting HTTPS connections.
 3. Add Site
     - Name: `Tweet API`
-    >Enter one or more hostname:port pairs for the site.
     - Targets: `host.docker.internal:8082`
-    >Select if the site is expecting HTTPS connections.
     - Secure: `Yes`
 
 ---
