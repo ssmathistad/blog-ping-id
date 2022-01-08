@@ -116,7 +116,7 @@ that and also add some of our own.
 
     <br>
 
-    - d. Under Resource URIs, add a base resource uri, `https://:3000`
+    - d. Under Resource URIs, add a base resource uri, ❓ `https://:3000`
 
 ---
 
@@ -151,7 +151,7 @@ that and also add some of our own.
     - Client Authentication: `Client Secret`
     - Client Secret: Either use Generate Secret button OR enter one.
     - Request Object Signing Algorithm: `RSA Using SHA-256`
-    - JWKS Url: `https://localhost:9031/ext/todoauthtoken/jwks`
+    - ❓ JWKS Url: `https://localhost:9031/ext/todoauthtoken/jwks`
     - Allowed Grant Types: `Client Credentials`
         - You can also select `Access Token Validation (Client is a resource server)` if you will be using this client id for pingaccess to access pingfederate.
     - Default Access Token Manager: `Todo Token Mgmt`
@@ -161,7 +161,7 @@ that and also add some of our own.
     - Client Authentication: `Client Secret`
     - Client Secret: Either use Generate Secret button OR enter one.
     - Request Object Signing Algorithm: `RSA Using SHA-256`
-    - JWKS Url: `https://localhost:9031/ext/tweetauthtoken/jwks`
+    - ❓ JWKS Url: `https://localhost:9031/ext/tweetauthtoken/jwks`
     - Allowed Grant Types: `Client Credentials`
         - You can also select `Access Token Validation (Client is a resource server)` if you will be using this client id for pingaccess to access pingfederate.
     - Default Access Token Manager: `Tweet Token Mgmt`
@@ -179,7 +179,7 @@ that and also add some of our own.
     - If you want to use a different client id then update the id and secret.
 
 ---
-
+❓ 
 <!-- ⭐️ *Virtual Host* -- This is needed to access the application via pingaccess.
 >*These are the virtual host names and ports from which PingAccess accepts requests (e.g., myhost.com:80). A wildcard (\*) is used to accept any host with the specified port (e.g., *:3000).*
 1. Go to Applications > Applications > Virtual Hosts
