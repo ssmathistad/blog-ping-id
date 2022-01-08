@@ -4,9 +4,9 @@ This project provides a sample to integrate PingAccess and PingFederate to be us
 with your services. This is using Java Spring Boot services but can be used with services written in any other language
 like nodeJS.
 
-## PingAccess and PingFederate
+# PingAccess and PingFederate
 
-### Starting the containers
+## Starting the containers
 
 PingAccess and PingFederate both are provided via docker containers. In order to start them, run `docker-compose up -d`.
 You will need to create a devops account on pingId to get the credentials. Once you have the credentials, you can either
@@ -28,12 +28,12 @@ After the containers are started you can use the following credentials to login 
 use `https://localhost:9000`. For pingfederate, use `https://localhost:9999/pingfederate/app`. The user credentials
 are: `administrator/2FederateM0re`.
 
-### Setup
+# Setup
 
 So, both PingAccess and PingFederate comes pre-configured with some things. For our setup we will make some changes to
 that and also add some of our own.
 
-#### PingFederate
+## PingFederate
 
 *Signing Certificate* -- First thing you will need is a signing certificate for your access token.
 
