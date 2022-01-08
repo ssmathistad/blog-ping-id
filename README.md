@@ -53,15 +53,13 @@ that and also add some of our own.
 
 1. Go to Applications > OAuth > Access Token Management
 2. Create New Instance
-    > Enter an Access Token Management Instance Name and ID, select the plugin Access Token Management Type, and a parent if applicable. The types available are limited to the plugins currently installed on your server.
+    >**Enter an Access Token Management Instance Name and ID, select the plugin Access Token Management Type, and a parent if applicable. The types available are limited to the plugins currently installed on your server.**
     - a. Type
         - Instance Name: `Todo Token Management`
         - Instance Id: `todotokenmgmt`
         - Type: `JSON Web Tokens`<br><br>
         
-    > Complete the configuration necessary to issue and validate access tokens. This configuration was designed into, and is specific to, the selected Access Token Management plugin.
-    
-    > A JSON Web Token (JWT) Bearer Access Token Management Plug-in that enables PingFederate to issue (and optionally validate) cryptographically secure self-contained OAuth access tokens.
+    >**Complete the configuration necessary to issue and validate access tokens. This configuration was designed into, and is specific to, the selected Access Token Management plugin. <br><br> A JSON Web Token (JWT) Bearer Access Token Management Plug-in that enables PingFederate to issue (and optionally validate) cryptographically secure self-contained OAuth access tokens.**
     - b. Instance Configuration
         - Certificates > Add a new row to 'Certificates' *[A group of certificates and their corresponding public/private key pairs for use with signatures]*
             - Key ID: `todokey`
@@ -83,13 +81,13 @@ that and also add some of our own.
 
     <br>
     
-    >Provide the names of the attributes that will be carried in (or referenced by) the OAuth access token. For auditing purposes, an attribute may be chosen as the subject.
+    >**Provide the names of the attributes that will be carried in (or referenced by) the OAuth access token. For auditing purposes, an attribute may be chosen as the subject.**
     - c. Access Token Attribute Contract
         - Add a new attribute to extend the USER_KEY subject.
 
     <br>
     
-    >Specify a list of base resource URI's which can be used to select this Access Token Management instance.
+    >**Specify a list of base resource URI's which can be used to select this Access Token Management instance.**
     - d. Under Resource URIs, add a base resource uri, `https://pingaccess:3000`
 16. Save
 17. Repeat steps 2-15 for Tweet Service.
