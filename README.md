@@ -211,19 +211,39 @@ that and also add some of our own.
 
 1. Go to Applications > Applications
 2. Add Application
-3. Name: *Todo App*
-4. Context Root: */todos*
-5. Virtual Hosts: Use the one created under *Virtual Host* step.
-6. Application Type: *API*
-7. SPA Support: *Checked*
-8. Access Validation: *Token Provider*
-9. Destination: *Site*
-10. Site: Select the site created under *Sites* step.
-11. Require Https: *Checked*
-12. Save
-13. Repeat the same for Tweet App.
+    - Name: `Todo App`
+    - Context Root: `/todos`
+      - Specify the first part of the URL path for the application and its resources. It must begin with a slash and can contain additional slashes, but not end with one. For example, /myApp, or /apps/myApp
+    - Virtual Hosts: Use the one created under *Virtual Host* step.
+        - ❓ `localhost:3000`
+    - Application Type: `API`
+    - SPA Support: `Checked`
+      - Single-page applications rely on different HTTP response codes, depending on the client type. When using API-protected applications, SPA support will configure PingAccess to return a 401 response that corresponds to the client's Accept headers. 
+    - Access Validation: `Token Provider`
+      - Select how the application is protected by an Authorization Server. Only applies to applications of type API. 
+    - Destination: `Site`
+      - Select the application destination type - Agent, Site or Sideband.
+    - Site: Select the site created under *Sites* step.
+      - `Todo API` 
+    - Require HTTPS: `Checked`
+      - Select if the application requires HTTPS connections. Only applies to destination of type Site.
+2. Add Application
+    - Name: `Tweet App`
+    - Context Root: `/tweets`
+    - Virtual Hosts: Use the one created under *Virtual Host* step.
+        - ❓ `localhost:3000`
+    - Application Type: `API`
+    - SPA Support: `Checked`
+    - Access Validation: `Token Provider`
+    - Destination: `Site`
+    - Site: Select the site created under *Sites* step.
+      - `Tweet API` 
+    - Require HTTPS: `Checked`
+3. Toggle both applications.
 
-#### Certificate
+---
+
+# Certificate
 
 Since both PA and PF are running inside the docker container over https, for the spring boot application to access these
 we need to add the certificates to the java trust store. In order to do so, get the certificate by running the following
