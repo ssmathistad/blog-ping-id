@@ -35,7 +35,7 @@ that and also add some of our own.
 
 ## PingFederate
 
-*Signing Certificate* -- First thing you will need is a signing certificate for your access token.
+⭐️ *Signing Certificate* -- First thing you will need is a signing certificate for your access token.
 
 1. Go to Security > Signing & Decryption Keys & Certificates
 2. Create New
@@ -51,7 +51,7 @@ that and also add some of our own.
   
 ---
 
-*Access Token Manager* -- In order to generate token, you will need to define a access token manager.
+⭐️ *Access Token Manager* -- In order to generate token, you will need to define a access token manager.
 
 1. Go to Applications > OAuth > Access Token Management
 2. Create New Instance
@@ -120,15 +120,29 @@ that and also add some of our own.
 
 ---
 
-*Access Token Mapping* -- This is needed to fulfill the access token attribute contracts.
+⭐️ *Access Token Mapping* -- This is needed to fulfill the access token attribute contracts.
 
-1. Go to Applications > Oauth > Access Token Mappings
-2. From Context dropdown, select Client Credentials and Access Token Manager as one of the token managers created above.
-3. Under Contract Fulfillment, select Context and ClientId in the respective dropdowns.
+>**Manage the attribute mapping(s) used to fulfill the access token attribute contracts. This configuration maps from a persistent grant or other sources into the access token attribute contract. For mappings involving a persistent grant, a default mapping should be configured for each access token manager. The default can be overridden based on the context of the authentication event of the original grant.**
+1. Go to Applications > OAuth > Access Token Mappings
+    - From Context dropdown, select Client Credentials and Access Token Manager as one of the token managers created above.
+      - 1st time: 
+          - Context: `Client Management`
+          - Access Token Manager: `Todo Token Management`
+          - Click **Add Mapping**
+      - 2nd time: 
+          - Context: `Client Management`
+          - Access Token Manager: `Tweet Token Management`
+          - Click **Add Mapping**
+    - Under Contract Fulfillment, select Context and ClientId in the respective dropdowns.
+      - 1st/2nd time: 
+          - Source: `Context`
+          - Vaule: `Client ID`
 
-*Clients* -- Now comes the client creation to be used by the services to get the access tokens.
+---
 
-1. Go to Applications > Oauth > Clients
+⭐️ *Clients* -- Now comes the client creation to be used by the services to get the access tokens.
+
+1. Go to Applications > OAuth > Clients
 2. Add Client
 3. Client Id: todo_client
 4. Name: Todo Client
