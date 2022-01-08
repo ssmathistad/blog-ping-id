@@ -51,26 +51,40 @@ that and also add some of our own.
 
 *Access Token Manager* -- In order to generate token, you will need to define a access token manager.
 
-1. Go to Applications > Oauth > Access Token Management
+1. Go to Applications > OAuth > Access Token Management
 2. Create New Instance
     > Enter an Access Token Management Instance Name and ID, select the plugin Access Token Management Type, and a parent if applicable. The types available are limited to the plugins currently installed on your server.
     - a. Type
         - Instance Name: `Todo Token Management`
         - Instance Id: `todotokenmgmt`
-        - Type: `JSON Web Tokens`
+        - Type: `JSON Web Tokens`<br><br>
+        
+    > Complete the configuration necessary to issue and validate access tokens. This configuration was designed into, and is specific to, the selected Access Token Management plugin.
+    
+    > A JSON Web Token (JWT) Bearer Access Token Management Plug-in that enables PingFederate to issue (and optionally validate) cryptographically secure self-contained OAuth access tokens.
     - b. Instance Configuration
-        - Certificates > Add a new row to 'Certificates'
+        - Certificates > Add a new row to 'Certificates' *[A group of certificates and their corresponding public/private key pairs for use with signatures]*
             - Key ID: `todokey`
+                - 🔵 *An identifier for the given key.*
             - Certificate: `Todo Cert`
-            - Click "Update"
+                - 🔵 *Requires an EC key or RSA key length of at least 2048 bits.*
+            - Click **Update**
         - JWS Algorithm: `RSA Using SHA-256`
+            - 🔵 *The HMAC or signing algorithm used to protect the integrity of the token. For HMAC, the active symmetric key must be selected below. **For RSA or EC, the active signing certificate must be selected.** Integrity protection can also be achieved using symmetric encryption, in which case this field can be left unselected.* 
         - Active Signing Certificate Key Id: `todokey`
-        - Show Advanced Fields
+            - 🔵 *The Key ID of the key pair and certificate to use when producing JWTs using an RSA-based or EC-based algorithm.*
+        - Click **Show Advanced Fields**
             - Issuer Claim Value: `https://pingfederate:9031`
+                - 🔵 *Indicates the value of the Issuer (iss) claim in the JWT (omitted, if blank).*
             - Audience Claim Value: `<todo-service-host>:8082`
+                >Indicates the value of the Audience (aud) claim in the JWT (omitted, if blank).*
             - JWKS Endpoint Path: `/todoauthtoken/jwks` -- This needs to be unique for each token manager.
+                >Path on the PingFederate server to publish a JSON Web Key Set with the keys/certificates that can be used for signature verification. Must include the initial slash (example: `/oauth/jwks`). The resulting URL will be `https://<pf_host>:<port>/ext/<JWKS Endpoint Path>`. If specified, the path must be unique across all plugin instances, including child instances.*<br><br>
+    > Provide the names of the attributes that will be carried in (or referenced by) the OAuth access token. For auditing purposes, an attribute may be chosen as the subject.
     - c. Access Token Attribute Contract
         - Add a new attribute to extend the USER_KEY subject.
+
+
 15. Under Resource URIs, add a base resource uri, *https://<virtual-host-on-ping-access>:3000*
 16. Save
 17. Repeat steps 2-15 for Tweet Service.
