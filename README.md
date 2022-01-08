@@ -59,7 +59,7 @@ that and also add some of our own.
         - Instance Id: `todotokenmgmt`
         - Type: `JSON Web Tokens`<br><br>
         
-    >**Complete the configuration necessary to issue and validate access tokens. This configuration was designed into, and is specific to, the selected Access Token Management plugin. <br><br> A JSON Web Token (JWT) Bearer Access Token Management Plug-in that enables PingFederate to issue (and optionally validate) cryptographically secure self-contained OAuth access tokens.**
+    >**Complete the configuration necessary to issue and validate access tokens. This configuration was designed into, and is specific to, the selected Access Token Management plugin. <br>A JSON Web Token (JWT) Bearer Access Token Management Plug-in that enables PingFederate to issue (and optionally validate) cryptographically secure self-contained OAuth access tokens.**
     - b. Instance Configuration
         - Certificates > Add a new row to 'Certificates' *[A group of certificates and their corresponding public/private key pairs for use with signatures]*
             - Key ID: `todokey`
