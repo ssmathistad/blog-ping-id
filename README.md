@@ -142,21 +142,29 @@ that and also add some of our own.
 
 ⭐️ *Clients* -- Now comes the client creation to be used by the services to get the access tokens.
 
-1. Go to Applications > OAuth > Clients
+1. Go to Applications > OAuth > Clients *[Manage OAuth clients (also known as applications)]*
 2. Add Client
-3. Client Id: todo_client
-4. Name: Todo Client
-5. Client Authentication: *Client Secret*
-6. Client Secret: Either use Generate Secret button OR enter one.
-7. Request Object Signing Algorithm: *RSA Using SHA-256*
-8. JWKS Url: *https://localhost:9031/ext/authtoken/jwks* -- This is the same url which you set in #12 under *Access
-   Token Management* above.
-9. Allowed Grant Types: *Client Credentials*
-    1. You can also select *Access Token Validation (Client is a resource server)* if you will be using this client id
-       for pingaccess to access pingfederate.
-10. Default Access Token Manager: *Todo Token Mgmt*
-11. Save.
-12. Repeat the same for another client for tweet. #9.1 is only needed for the client to be used by pingaccess.
+    >Manage the configuration and policy information about a client.
+    - Client Id: `todo_client`
+    - Name: `Todo Client`
+    - Client Authentication: `Client Secret`
+    - Client Secret: Either use Generate Secret button OR enter one.
+    - Request Object Signing Algorithm: `RSA Using SHA-256`
+    - JWKS Url: `https://localhost:9031/ext/todoauthtoken/jwks`
+    - Allowed Grant Types: `Client Credentials`
+        - You can also select `Access Token Validation (Client is a resource server)` if you will be using this client id for pingaccess to access pingfederate.
+    - Default Access Token Manager: `Todo Token Mgmt`
+2. Add Client
+    >Manage the configuration and policy information about a client.
+    - Client Id: `tweet_client`
+    - Name: `Tweet Client`
+    - Client Authentication: `Client Secret`
+    - Client Secret: Either use Generate Secret button OR enter one.
+    - Request Object Signing Algorithm: `RSA Using SHA-256`
+    - JWKS Url: `https://localhost:9031/ext/tweetauthtoken/jwks`
+    - Allowed Grant Types: `Client Credentials`
+        - You can also select `Access Token Validation (Client is a resource server)` if you will be using this client id for pingaccess to access pingfederate.
+    - Default Access Token Manager: `Tweet Token Mgmt`
 
 #### Pingaccess
 
