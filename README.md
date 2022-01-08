@@ -48,6 +48,8 @@ that and also add some of our own.
     - Subject Alternate Names: `DNS Name -- host.docker.internal`
     - Organization: `any name`
     - Country: `US`
+  
+---
 
 *Access Token Manager* -- In order to generate token, you will need to define a access token manager.
 
@@ -74,7 +76,7 @@ that and also add some of our own.
         - Click **Show Advanced Fields**
             - Issuer Claim Value: `https://pingfederate:9031`
                 >*Indicates the value of the Issuer (iss) claim in the JWT (omitted, if blank).*
-            - Audience Claim Value: `<todo-service-host>:8082`
+            - Audience Claim Value: `:8082`
                 >*Indicates the value of the Audience (aud) claim in the JWT (omitted, if blank).*
             - JWKS Endpoint Path: `/todoauthtoken/jwks` -- This needs to be unique for each token manager.
                 >*Path on the PingFederate server to publish a JSON Web Key Set with the keys/certificates that can be used for signature verification. Must include the initial slash (example: `/oauth/jwks`). The resulting URL will be `https://<pf_host>:<port>/ext/<JWKS Endpoint Path>`. If specified, the path must be unique across all plugin instances, including child instances.*
@@ -88,9 +90,35 @@ that and also add some of our own.
     <br>
     
     >**Specify a list of base resource URI's which can be used to select this Access Token Management instance.**
-    - d. Under Resource URIs, add a base resource uri, `https://pingaccess:3000`
-16. Save
-17. Repeat steps 2-15 for Tweet Service.
+    - d. Under Resource URIs, add a base resource uri, `https://:3000`<br><br>
+
+3. Create New Instance
+    - a. Type
+        - Instance Name: `Tweet Token Management`
+        - Instance Id: `tweettokenmgmt`
+        - Type: `JSON Web Tokens`<br><br>
+    - b. Instance Configuration
+        - Certificates > Add a new row to 'Certificates'
+            - Key ID: `tweetkey`
+            - Certificate: `Tweet Cert`
+            - Click **Update**
+        - JWS Algorithm: `RSA Using SHA-256`
+        - Active Signing Certificate Key Id: `tweetkey`
+        - Click **Show Advanced Fields**
+            - Issuer Claim Value: `https://pingfederate:9031`
+            - Audience Claim Value: `:8082`
+            - JWKS Endpoint Path: `/tweetauthtoken/jwks` -- This needs to be unique for each token manager.
+
+    <br>
+    
+    - c. Access Token Attribute Contract
+        - Add a new attribute to extend the USER_KEY subject.
+
+    <br>
+
+    - d. Under Resource URIs, add a base resource uri, `https://:3000`
+
+---
 
 *Access Token Mapping* -- This is needed to fulfill the access token attribute contracts.
 
