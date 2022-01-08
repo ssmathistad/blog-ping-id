@@ -55,13 +55,13 @@ that and also add some of our own.
 
 1. Go to Applications > OAuth > Access Token Management
 2. Create New Instance
-    >**Enter an Access Token Management Instance Name and ID, select the plugin Access Token Management Type, and a parent if applicable. The types available are limited to the plugins currently installed on your server.**
+    >*Enter an Access Token Management Instance Name and ID, select the plugin Access Token Management Type, and a parent if applicable. The types available are limited to the plugins currently installed on your server.*
     - a. Type
         - Instance Name: `Todo Token Management`
         - Instance Id: `todotokenmgmt`
         - Type: `JSON Web Tokens`<br><br>
         
-    >**Complete the configuration necessary to issue and validate access tokens. This configuration was designed into, and is specific to, the selected Access Token Management plugin. <br>A JSON Web Token (JWT) Bearer Access Token Management Plug-in that enables PingFederate to issue (and optionally validate) cryptographically secure self-contained OAuth access tokens.**
+    >*Complete the configuration necessary to issue and validate access tokens. This configuration was designed into, and is specific to, the selected Access Token Management plugin. <br>A JSON Web Token (JWT) Bearer Access Token Management Plug-in that enables PingFederate to issue (and optionally validate) cryptographically secure self-contained OAuth access tokens.*
     - b. Instance Configuration
         - Certificates > Add a new row to 'Certificates' *[A group of certificates and their corresponding public/private key pairs for use with signatures]*
             - Key ID: `todokey`
@@ -83,13 +83,13 @@ that and also add some of our own.
 
     <br>
     
-    >**Provide the names of the attributes that will be carried in (or referenced by) the OAuth access token. For auditing purposes, an attribute may be chosen as the subject.**
+    >*Provide the names of the attributes that will be carried in (or referenced by) the OAuth access token. For auditing purposes, an attribute may be chosen as the subject.*
     - c. Access Token Attribute Contract
         - Add a new attribute to extend the USER_KEY subject.
 
     <br>
     
-    >**Specify a list of base resource URI's which can be used to select this Access Token Management instance.**
+    >*Specify a list of base resource URI's which can be used to select this Access Token Management instance.*
     - d. Under Resource URIs, add a base resource uri, `https://:3000`<br><br>
 
 3. Create New Instance
@@ -122,7 +122,7 @@ that and also add some of our own.
 
 ⭐️ *Access Token Mapping* -- This is needed to fulfill the access token attribute contracts.
 
->**Manage the attribute mapping(s) used to fulfill the access token attribute contracts. This configuration maps from a persistent grant or other sources into the access token attribute contract. For mappings involving a persistent grant, a default mapping should be configured for each access token manager. The default can be overridden based on the context of the authentication event of the original grant.**
+>*Manage the attribute mapping(s) used to fulfill the access token attribute contracts. This configuration maps from a persistent grant or other sources into the access token attribute contract. For mappings involving a persistent grant, a default mapping should be configured for each access token manager. The default can be overridden based on the context of the authentication event of the original grant.*
 1. Go to Applications > OAuth > Access Token Mappings
     - From Context dropdown, select Client Credentials and Access Token Manager as one of the token managers created above.
       - 1st time: 
@@ -142,7 +142,8 @@ that and also add some of our own.
 
 ⭐️ *Clients* -- Now comes the client creation to be used by the services to get the access tokens.
 
-1. Go to Applications > OAuth > Clients *[Manage OAuth clients (also known as applications)]*
+1. Go to Applications > OAuth > Clients 
+>*Manage OAuth clients (also known as applications)*
 2. Add Client
     >Manage the configuration and policy information about a client.
     - Client Id: `todo_client`
@@ -155,7 +156,6 @@ that and also add some of our own.
         - You can also select `Access Token Validation (Client is a resource server)` if you will be using this client id for pingaccess to access pingfederate.
     - Default Access Token Manager: `Todo Token Mgmt`
 2. Add Client
-    >Manage the configuration and policy information about a client.
     - Client Id: `tweet_client`
     - Name: `Tweet Client`
     - Client Authentication: `Client Secret`
@@ -166,32 +166,50 @@ that and also add some of our own.
         - You can also select `Access Token Validation (Client is a resource server)` if you will be using this client id for pingaccess to access pingfederate.
     - Default Access Token Manager: `Tweet Token Mgmt`
 
-#### Pingaccess
+---
+---
+## Pingaccess
 
-*Token Provider* -- This is already set by default.
+⭐️ *Token Provider* -- This is already set by default 
+>*Configure connections between PingAccess and PingFederate*.
 
 1. Go to Settings > System > Token Provider.
-2. Only change you will need to do is select *Send Audience* under *Oauth Resource Server*
-3. If you want to use a different client id then update the id and secret.
+>Select to send the URI the user requested as the 'aud' OAuth parameter for PingAccess to use to select an Access Token Manager. If this option is enabled and no matching Access Token Manager exists, PingFederate returns a 401 error to the browser. If cleared, the default Access Token Manager is used.
+2. Only change you will need to do is select `Send Audience` under `OAuth Resource Server`
+    - If you want to use a different client id then update the id and secret.
 
-*Virtual Host* -- This is needed to access the application via pingaccess.
+---
 
+<!-- ⭐️ *Virtual Host* -- This is needed to access the application via pingaccess.
+>*These are the virtual host names and ports from which PingAccess accepts requests (e.g., myhost.com:80). A wildcard (\*) is used to accept any host with the specified port (e.g., *:3000).*
 1. Go to Applications > Applications > Virtual Hosts
 2. Add Virtual Host
-3. Host: Use the same one as used on pingfederate's *Access Token Manager*'s Resource URI tab.
-4. Port: 3000 -- This is the default pingaccess application port. It can be configured on startup to a different one.
+    >Enter the host name for the Virtual Host, e.g. myHost.com. You can use a wildcard (*) to indicate that any host name is acceptable.
+    - Host: Use the same one as used on pingfederate's *Access Token Manager*'s Resource URI tab. Ex. `https://`.
+    >Enter the integer port number for the Virtual Host, e.g 1234.
+    - Port: 3000 -- This is the default pingaccess application port. It can be configured on startup to a different one. -->
 
-*Sites* -- Add your API information.
+---
+
+⭐️ *Sites* -- Add your API information.
 
 1. Go to Applications > Sites
 2. Add Site
-3. Name: *Todo API*
-4. Targets: *host.docker.internal:8082*
-5. Secure: *Yes*
-6. Save
-7. Repeat the same for Tweet API.
+    - Name: `Todo API`
+    >Enter one or more hostname:port pairs for the site.
+    - Targets: `host.docker.internal:8082`
+    >Select if the site is expecting HTTPS connections.
+    - Secure: `Yes`
+3. Add Site
+    - Name: `Tweet API`
+    >Enter one or more hostname:port pairs for the site.
+    - Targets: `host.docker.internal:8082`
+    >Select if the site is expecting HTTPS connections.
+    - Secure: `Yes`
 
-*Application* -- Add your Application information.
+---
+
+⭐️ *Application* -- Add your Application information.
 
 1. Go to Applications > Applications
 2. Add Application
